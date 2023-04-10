@@ -10,7 +10,7 @@
         },
 
         {
-        "question": "Merucry is the hottest planet in our solar system",
+        "question": "Mercury is the hottest planet in our solar system",
         "answer": "False"
         },
 
@@ -110,7 +110,7 @@
         },
 
         {
-        "question": "Saudi Arabia does not conatain a single river",
+        "question": "Saudi Arabia does not contain a single river",
         "answer": "True"
         },
 
@@ -130,7 +130,7 @@
         },
 
         {
-        "question": "Nintendo starting as a company selling playing cards",
+        "question": "Nintendo started as a company selling playing cards",
         "answer": "True"
         },
 
@@ -145,7 +145,7 @@
         },
 
         {
-        "question": "The first Sonic the Hedgehog game was released on Playstation"
-        }    
-        
+        "question": "The first Sonic the Hedgehog game was released on Playstation",
+        "answer": "False"
+        }
 ]

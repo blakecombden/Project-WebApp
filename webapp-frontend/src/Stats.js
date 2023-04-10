@@ -1,8 +1,6 @@
-import React, {useEffect, useRef} from "react";
+import React, {useEffect} from "react";
 import Card from "react-bootstrap/Card";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
-import App from "./App";
 
 export function GetStats() {
 
@@ -27,7 +25,6 @@ export function GetStats() {
                         <Nav.Link href="/play">Play</Nav.Link>
                     </Nav.Item>
                 </Nav>
-
             </header>
         </div>
     )
