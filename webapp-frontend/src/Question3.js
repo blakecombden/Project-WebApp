@@ -1,9 +1,9 @@
 import {Route, Routes} from "react-router-dom";
-import {GetQuestion1} from './Question1';
+import {GetResults} from "./Results";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from "react-bootstrap/Card";
 
-export function GetStats() {
+export function GetQuestion3() {
 
     return (
         <div className="App">
@@ -12,20 +12,20 @@ export function GetStats() {
                     <Card.Body>
                         <Card.Title style={{ color: 'black'}}>TriviApp</Card.Title>
                         <Card.Text style={{ color: 'black'}}>
-                            Your Stats.
+                            Question 3
                         </Card.Text>
                     </Card.Body>
                 </Card>
-                (stats go here)
+                (question 3 goes here)
                 <button onClick={(e) => {e.preventDefault();
-                        window.location.href="http://localhost:3000/question1"}}>PLAY
+                    window.location.href="http://localhost:3000/results"}}>RESULTS
                 </button>
                 <button onClick={(e) => {e.preventDefault();
                     window.location.href="http://localhost:3000"}}>LOGOUT
                 </button>
             </header>
             <Routes>
-                <Route path="/question1" element={<GetQuestion1/>} />
+                <Route path="/results" element={<GetResults/>} />
             </Routes>
         </div>
     )

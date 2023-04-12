@@ -1,12 +1,16 @@
 /*const movieData = JSON.parse(fs.readFileSync('./movies.json'));
  */
 import './App.css';
-import React, {useState, useRef} from "react";
-import {GetStats} from './Stats';
 import {Routes, Route} from "react-router-dom";
+import React, {useRef} from "react";
+import {GetStats} from './Stats';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
+import {GetQuestion1} from "./Question1";
+import {GetQuestion2} from "./Question2";
+import {GetQuestion3} from "./Question3";
+import {GetResults} from "./Results";
 
 function HomePage() {
 
@@ -64,8 +68,8 @@ function HomePage() {
                                   type="text" />
                     </Form.Label>
                 </Form>
-                    <button onClick={signIn}>Sign In</button>
-                    <button onClick={signUp}>Sign Up</button>
+                    <button onClick={signIn}>SIGN IN</button>
+                    <button onClick={signUp}>SIGN UP</button>
             </header>
         </div>
     )
@@ -74,12 +78,14 @@ function HomePage() {
 
 function App() {
 
-    let [stats, getStats] = useState(null);
-
     return (
         <Routes>
-            <Route path="/" element={<HomePage stats={stats} getStats={getStats}/>} />
-            <Route path="/stats" element={<GetStats stats={stats} getStats={getStats}/>} />
+            <Route path="/" element={<HomePage/>} />
+            <Route path="/stats" element={<GetStats/>} />
+            <Route path="/question1" element={<GetQuestion1/>} />
+            <Route path="/question2" element={<GetQuestion2/>} />
+            <Route path="/question3" element={<GetQuestion3/>} />
+            <Route path="/results" element={<GetResults/>} />
         </Routes>
     )
 }
