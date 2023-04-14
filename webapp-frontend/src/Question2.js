@@ -5,6 +5,11 @@ import Card from "react-bootstrap/Card";
 
 export function GetQuestion2() {
 
+    let score;
+    console.log("Score in storage: " + localStorage.getItem("score"));
+    score = JSON.parse(localStorage.getItem("score"));
+    console.log("Score variable: " + score);
+
     return (
         <div className="App">
             <header className="App-header">

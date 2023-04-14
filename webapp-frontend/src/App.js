@@ -43,6 +43,8 @@ function HomePage() {
             }
         }
         localStorage.setItem(name, name);
+        let namesTotalScore = name+"'s Total Score";
+        localStorage.setItem(namesTotalScore, JSON.stringify(0));
         window.location.href = "http://localhost:3000/stats";
     }
 

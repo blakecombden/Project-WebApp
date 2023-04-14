@@ -4,21 +4,19 @@ import {GetQuestion2} from "./Question2";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from "react-bootstrap/Card";
 
-export function GetQuestion1(props) {
+export function GetQuestion1() {
 
     let [questions, setQuestions] = useState([]);
     let questionArray = [""];
     let randomQuestion = ["", ""];
     let randomInt;
     let chosenQuestion;
-    let counter = 0;
-    let number = 1;
-    localStorage.setItem("counter", JSON.stringify(counter));
-    let saved = JSON.parse(localStorage.counter);
-    console.log(saved);
-    localStorage.setItem("counter", JSON.stringify(number));
-    saved = JSON.parse(localStorage.counter);
-    console.log(saved);
+
+    let score = 0;
+    localStorage.setItem("score", JSON.stringify(score));
+    console.log("Score in storage: " + localStorage.getItem("score"));
+    score = JSON.parse(localStorage.getItem("score"));
+    console.log("Score variable: " + score);
 
 
     useEffect(() => {
@@ -30,32 +28,24 @@ export function GetQuestion1(props) {
 
     const checkIfFalse = (question) => {
         if (question[1] == "False") {
-            // correct, do things
             alert("Correct!");
+            score += 1;
+            localStorage.setItem("score", score);
         } else {
-            // incorrect, do things
             alert("Incorrect!");
         }
-        counter += 1;
-        if (counter == 3) {
-            window.location.href="http://localhost:3000/results"
-        }
-        window.location.reload();
+        window.location.href="http://localhost:3000/question2"
     }
 
     const checkIfTrue = (question) => {
         if (question[1] == "True") {
-            // correct, do things
             alert("Correct!");
+            score += 1;
+            localStorage.setItem("score", score);
         } else {
-            // incorrect, do things
             alert("Incorrect!");
         }
-        counter += 1;
-        if (counter == 3) {
-            window.location.href="http://localhost:3000/results"
-        }
-        window.location.reload();
+        window.location.href="http://localhost:3000/question2"
     }
 
     function getRandomQuestion(array) {
