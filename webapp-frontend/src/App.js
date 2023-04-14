@@ -7,6 +7,9 @@ import {GetStats} from './Stats';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 import {GetQuestion1} from "./Question1";
 import {GetQuestion2} from "./Question2";
 import {GetQuestion3} from "./Question3";
@@ -21,9 +24,10 @@ function HomePage() {
         if (name === "") {
             return alert("Please enter a username.");
         }
-        name = JSON.stringify(name);
+
         for (let i = 0; i < localStorage.length; i++){
-            if (name === localStorage.getItem(localStorage.key(i))) {
+            if (name === localStorage.key(i)) {
+                localStorage.setItem("Current Player", name);
                 window.location.href = "http://localhost:3000/stats";
                 return null
             }
@@ -36,16 +40,23 @@ function HomePage() {
         if (name === "") {
             return alert("Please enter a username.");
         }
-        name = JSON.stringify(name);
+
         for (let i = 0; i < localStorage.length; i++){
-            if (name === localStorage.getItem(localStorage.key(i))) {
+            if (name === localStorage.key(i)) {
                 return alert("Username already exists. Please use a different one.");
             }
         }
         localStorage.setItem(name, name);
-        let namesTotalScore = name+"'s Total Score";
-        localStorage.setItem(namesTotalScore, JSON.stringify(0));
+        localStorage.setItem(name+" - Games Played", JSON.stringify(0));
+        localStorage.setItem(name+" - Total Score", JSON.stringify(0));
+        localStorage.setItem(name+" - Average Score", JSON.stringify(0));
+        localStorage.setItem(name+" - Perfect Games", JSON.stringify(0));
+        localStorage.setItem("Current Player", name);
         window.location.href = "http://localhost:3000/stats";
+    }
+
+    function deleteLocalStorage() {
+        localStorage.clear();
     }
 
     return (
@@ -53,7 +64,7 @@ function HomePage() {
             <header className="App-header">
                 <Card style={{ width: '100rem' }}>
                     <Card.Body>
-                        <Card.Title style={{ color: 'black'}}>TriviApp</Card.Title>
+                        <Card.Title style={{color:'black'}}>TriviApp</Card.Title>
                         <Card.Text style={{ color: 'black'}}>
                             Sign in to view your current record and play today's quiz.
                         </Card.Text>
@@ -64,15 +75,30 @@ function HomePage() {
                 </Card>
                 <Form>
                     <Form.Label>Username:
-                    <Form.Control style={{width:250}}
+                    <Form.Control style={{width:250, textAlign:"center"}}
                                   name={"username"}
                                   ref={username}
                                   type="text" />
                     </Form.Label>
                 </Form>
-                    <button onClick={signIn}>SIGN IN</button>
-                    <button onClick={signUp}>SIGN UP</button>
             </header>
+            <br></br>
+            <Row>
+                <Col></Col>
+                <Col></Col>
+                <Col>
+            <Button variant="primary" style={{width:100}} onClick={signIn}>SIGN IN</Button>
+                </Col>
+                <Col>
+            <Button variant="primary" style={{width:100}} onClick={signUp}>SIGN UP</Button>
+                </Col>
+                <Col></Col>
+                <Col></Col>
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Button variant="primary" style={{width:200}} onClick={deleteLocalStorage}>Delete localStorage</Button>
         </div>
     )
 

@@ -3,6 +3,9 @@ import React, {useState, useEffect} from "react";
 import {GetQuestion2} from "./Question2";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from "react-bootstrap/Card";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 export function GetQuestion1() {
 
@@ -12,11 +15,9 @@ export function GetQuestion1() {
     let randomInt;
     let chosenQuestion;
 
-    let score = 0;
-    localStorage.setItem("score", JSON.stringify(score));
-    console.log("Score in storage: " + localStorage.getItem("score"));
-    score = JSON.parse(localStorage.getItem("score"));
-    console.log("Score variable: " + score);
+    let currentScore = 0;
+    localStorage.setItem("Current Score", JSON.stringify(currentScore));
+    currentScore = JSON.parse(localStorage.getItem("Current Score"));
 
 
     useEffect(() => {
@@ -29,8 +30,8 @@ export function GetQuestion1() {
     const checkIfFalse = (question) => {
         if (question[1] == "False") {
             alert("Correct!");
-            score += 1;
-            localStorage.setItem("score", score);
+            currentScore += 1;
+            localStorage.setItem("score", currentScore);
         } else {
             alert("Incorrect!");
         }
@@ -40,8 +41,8 @@ export function GetQuestion1() {
     const checkIfTrue = (question) => {
         if (question[1] == "True") {
             alert("Correct!");
-            score += 1;
-            localStorage.setItem("score", score);
+            currentScore += 1;
+            localStorage.setItem("score", currentScore);
         } else {
             alert("Incorrect!");
         }
@@ -77,16 +78,24 @@ export function GetQuestion1() {
                 {
                     getRandomQuestion(questionArray)[0]
                 }
-                <br></br>
-                <button variant="danger" onClick={() => checkIfTrue(chosenQuestion)}>True</button>
-                <button variant="danger" onClick={() => checkIfFalse(chosenQuestion)}>False</button>
-                <button onClick={(e) => {e.preventDefault();
-                    window.location.href="http://localhost:3000/question2"}}>NEXT QUESTION
-                </button>
-                <button onClick={(e) => {e.preventDefault();
-                    window.location.href="http://localhost:3000"}}>LOGOUT
-                </button>
             </header>
+            <br></br>
+            <Row>
+                <Col></Col>
+                <Col></Col>
+                <Col>
+                <Button variant="primary" style={{width:100}} onClick={() => checkIfTrue(chosenQuestion)}>True</Button>
+                </Col>
+                <Col>
+                <Button variant="primary" style={{width:100}} onClick={() => checkIfFalse(chosenQuestion)}>False</Button>
+                </Col>
+                <Col></Col>
+                <Col></Col>
+            </Row>
+            <br></br>
+            <Button variant="primary" style={{width:100}} onClick={(e) => {e.preventDefault();
+                window.location.href="http://localhost:3000"}}>LOGOUT
+            </Button>
             <Routes>
                 <Route path="/question1/*" element={<GetQuestion1 questions={questions} setQuestions={setQuestions}/>} />
                 <Route path="/question2" element={<GetQuestion2/>} />
