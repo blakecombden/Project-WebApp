@@ -81,8 +81,8 @@ function App() {
     return (
         <Routes>
             <Route path="/" element={<HomePage/>} />
-            <Route path="/stats" element={<GetStats/>} />
-            <Route path="/question1" element={<GetQuestion1/>} />
+            <Route path="/stats/*" element={<GetStats/>} />
+            <Route path="/question1/*" element={<GetQuestion1/>} />
             <Route path="/question2" element={<GetQuestion2/>} />
             <Route path="/question3" element={<GetQuestion3/>} />
             <Route path="/results" element={<GetResults/>} />
