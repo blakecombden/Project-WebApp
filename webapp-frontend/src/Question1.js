@@ -16,8 +16,9 @@ export function GetQuestion1() {
     let chosenQuestion;
 
     let currentScore = 0;
-    localStorage.setItem("Current Score", JSON.stringify(currentScore));
-    currentScore = JSON.parse(localStorage.getItem("Current Score"));
+    let currentPlayer = localStorage.getItem("Current Player");
+    localStorage.setItem(currentPlayer+ " - Current Score", JSON.stringify(currentScore));
+    currentScore = JSON.parse(localStorage.getItem(currentPlayer+ " - Current Score"));
 
 
     useEffect(() => {
@@ -31,7 +32,7 @@ export function GetQuestion1() {
         if (question[1] == "False") {
             alert("Correct!");
             currentScore += 1;
-            localStorage.setItem("score", currentScore);
+            localStorage.setItem(currentPlayer+ " - Current Score", currentScore);
         } else {
             alert("Incorrect!");
         }
@@ -42,7 +43,7 @@ export function GetQuestion1() {
         if (question[1] == "True") {
             alert("Correct!");
             currentScore += 1;
-            localStorage.setItem("score", currentScore);
+            localStorage.setItem(currentPlayer+ " - Current Score", currentScore);
         } else {
             alert("Incorrect!");
         }
@@ -60,12 +61,23 @@ export function GetQuestion1() {
         questionArray.push([question, answer]);
     }
 
+    function logout() {
+        localStorage.removeItem(currentPlayer+ " - Current Score");
+        localStorage.removeItem("Current Player");
+        window.location.href="http://localhost:3000"
+    }
+
+    // testing
+    function deleteLocalStorage() {
+        localStorage.clear();
+    }
+
     return (
         <div className="App">
             <header className="App-header">
                 <Card style={{ width: '100rem' }}>
                     <Card.Body>
-                        <Card.Title style={{ color: 'black'}}>TriviApp</Card.Title>
+                        <h1 style={{ color: 'black'}}>TriviApp</h1>
                         <Card.Text style={{ color: 'black'}}>
                             Question 1
                         </Card.Text>
@@ -93,9 +105,12 @@ export function GetQuestion1() {
                 <Col></Col>
             </Row>
             <br></br>
-            <Button variant="primary" style={{width:100}} onClick={(e) => {e.preventDefault();
-                window.location.href="http://localhost:3000"}}>LOGOUT
+            <Button variant="primary" style={{width:100}} onClick={logout}>LOGOUT
             </Button>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Button variant="primary" style={{width:200}} onClick={deleteLocalStorage}>Delete localStorage (testing)</Button>
             <Routes>
                 <Route path="/question1/*" element={<GetQuestion1 questions={questions} setQuestions={setQuestions}/>} />
                 <Route path="/question2" element={<GetQuestion2/>} />
@@ -103,5 +118,3 @@ export function GetQuestion1() {
         </div>
     );
 }
-
-export default GetQuestion1;

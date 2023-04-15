@@ -1,5 +1,3 @@
-/*const movieData = JSON.parse(fs.readFileSync('./movies.json'));
- */
 import './App.css';
 import {Routes, Route} from "react-router-dom";
 import React, {useRef} from "react";
@@ -46,6 +44,7 @@ function HomePage() {
                 return alert("Username already exists. Please use a different one.");
             }
         }
+
         localStorage.setItem(name, name);
         localStorage.setItem(name+" - Games Played", JSON.stringify(0));
         localStorage.setItem(name+" - Total Score", JSON.stringify(0));
@@ -55,6 +54,7 @@ function HomePage() {
         window.location.href = "http://localhost:3000/stats";
     }
 
+    // testing
     function deleteLocalStorage() {
         localStorage.clear();
     }
@@ -64,7 +64,7 @@ function HomePage() {
             <header className="App-header">
                 <Card style={{ width: '100rem' }}>
                     <Card.Body>
-                        <Card.Title style={{color:'black'}}>TriviApp</Card.Title>
+                        <h1 style={{color:'black'}}>TriviApp</h1>
                         <Card.Text style={{ color: 'black'}}>
                             Sign in to view your current record and play today's quiz.
                         </Card.Text>
@@ -98,7 +98,7 @@ function HomePage() {
             <br></br>
             <br></br>
             <br></br>
-            <Button variant="primary" style={{width:200}} onClick={deleteLocalStorage}>Delete localStorage</Button>
+            <Button variant="primary" style={{width:200}} onClick={deleteLocalStorage}>Delete localStorage (testing)</Button>
         </div>
     )
 
@@ -111,9 +111,9 @@ function App() {
             <Route path="/" element={<HomePage/>} />
             <Route path="/stats/*" element={<GetStats/>} />
             <Route path="/question1/*" element={<GetQuestion1/>} />
-            <Route path="/question2" element={<GetQuestion2/>} />
-            <Route path="/question3" element={<GetQuestion3/>} />
-            <Route path="/results" element={<GetResults/>} />
+            <Route path="/question2/*" element={<GetQuestion2/>} />
+            <Route path="/question3/*" element={<GetQuestion3/>} />
+            <Route path="/results/*" element={<GetResults/>} />
         </Routes>
     )
 }
