@@ -9,6 +9,7 @@ import React from "react";
 
 export function GetStats() {
 
+    // get Current Player and their data
     let currentPlayer = localStorage.getItem("Current Player");
     let gamesPlayed = localStorage.getItem(currentPlayer+" - Games Played");
     let totalScore = localStorage.getItem(currentPlayer+" - Total Score");
@@ -17,6 +18,8 @@ export function GetStats() {
 
     function play() {
 
+        // check if player has never played or has waited 24 hours to play again
+        // if so, assign new timestamp
         let rightNow = Date.now();
         let playerStartTime;
 
@@ -34,6 +37,7 @@ export function GetStats() {
         }
     }
 
+    // let player log out at any time, removing Current Player and Score from localStorage
     function logout() {
         localStorage.removeItem(currentPlayer+ " - Current Score");
         localStorage.removeItem("Current Player");
@@ -45,6 +49,7 @@ export function GetStats() {
         localStorage.clear();
     }
 
+    // display page with Current Player and their overall stats
     return (
         <div className="App">
             <header className="App-header">
@@ -58,13 +63,13 @@ export function GetStats() {
                         </Card.Text>
                     </Card.Body>
                 </Card>
-                Games Played: {gamesPlayed}
+                Total Games Played: {gamesPlayed}
                 <br></br>
-                Total Score: {totalScore}/{gamesPlayed*3}
+                Overall Score: {totalScore}/{gamesPlayed*3}
                 <br></br>
                 Average Score: {averageScore}
                 <br></br>
-                Perfect Games: {perfectGames}/{gamesPlayed}
+                Number of Perfect Games: {perfectGames}/{gamesPlayed}
                 <br></br>
             </header>
             <br></br>

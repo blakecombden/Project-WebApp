@@ -17,12 +17,14 @@ function HomePage() {
 
     const username = useRef();
 
+    // check if player has signed up
     function signIn() {
         let name = username.current.value
         if (name === "") {
             return alert("Please enter a username.");
         }
 
+        // set player's name to Current Player key
         for (let i = 0; i < localStorage.length; i++){
             if (name === localStorage.key(i)) {
                 localStorage.setItem("Current Player", name);
@@ -33,18 +35,21 @@ function HomePage() {
         return alert("Username does not exist. Try again or sign up!")
     }
 
+    // check if player has already signed up
     function signUp() {
         let name = username.current.value
         if (name === "") {
             return alert("Please enter a username.");
         }
 
+        // check if username already exists
         for (let i = 0; i < localStorage.length; i++){
             if (name === localStorage.key(i)) {
                 return alert("Username already exists. Please use a different one.");
             }
         }
 
+        // set initial player data to localStorage
         localStorage.setItem(name, name);
         localStorage.setItem(name+" - Games Played", JSON.stringify(0));
         localStorage.setItem(name+" - Total Score", JSON.stringify(0));
@@ -59,6 +64,7 @@ function HomePage() {
         localStorage.clear();
     }
 
+    // display page with username form input
     return (
         <div className="App">
             <header className="App-header">
@@ -66,7 +72,7 @@ function HomePage() {
                     <Card.Body>
                         <h1 style={{color:'black'}}>TriviApp</h1>
                         <Card.Text style={{ color: 'black'}}>
-                            Sign in to view your current record and play today's quiz.
+                            Sign in to view your current stats and play today's quiz.
                         </Card.Text>
                         <Card.Text style={{ color: 'black'}}>
                         Or sign up to start playing.

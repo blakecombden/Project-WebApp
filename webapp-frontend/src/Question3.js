@@ -9,18 +9,19 @@ import Button from 'react-bootstrap/Button';
 
 export function GetQuestion3() {
 
+    // initialize arrays used to get question data from database and display random question
     let [questions, setQuestions] = useState([]);
     let questionArray = [""];
     let randomQuestion = ["", ""];
     let randomInt;
     let chosenQuestion;
 
-
+    // get Current Player and initialize their score
     let currentScore = 0;
     let currentPlayer = localStorage.getItem("Current Player");
     currentScore = JSON.parse(localStorage.getItem(currentPlayer+ " - Current Score"));
 
-
+    // get question data
     useEffect(() => {
         fetch("/api/questions")
             .then(response => response.json())
@@ -28,6 +29,8 @@ export function GetQuestion3() {
             .catch(e => console.log(e.message))
     }, []);
 
+    // check if player's answer of false is correct
+    // if so, increase score by 1 and save in localStorage
     const checkIfFalse = (question) => {
         if (question[1] == "False") {
             alert("Correct!");
@@ -39,6 +42,8 @@ export function GetQuestion3() {
         window.location.href="http://localhost:3000/results"
     }
 
+    // check if player's answer of true is correct
+    // if so, increase score by 1 and save in localStorage
     const checkIfTrue = (question) => {
         if (question[1] == "True") {
             alert("Correct!");
@@ -50,6 +55,7 @@ export function GetQuestion3() {
         window.location.href="http://localhost:3000/results"
     }
 
+    // pick random question from all questions
     function getRandomQuestion(array) {
         randomInt = Math.floor(Math.random() * array.length);
         randomQuestion = array[randomInt];
@@ -57,10 +63,12 @@ export function GetQuestion3() {
         return randomQuestion;
     }
 
+    // place all question data in an array
     function createQuestionArray(question, answer) {
         questionArray.push([question, answer]);
     }
 
+    // let player log out at any time, removing Current Player and Score from localStorage
     function logout() {
         localStorage.removeItem(currentPlayer+ " - Current Score");
         localStorage.removeItem("Current Player");
@@ -72,6 +80,7 @@ export function GetQuestion3() {
         localStorage.clear();
     }
 
+    // display page with randomly selected question and true and false buttons
     return (
         <div className="App">
             <header className="App-header">

@@ -9,21 +9,20 @@ import React from "react";
 
 export function GetResults() {
 
+    // get Current Player and their data
     let currentPlayer = localStorage.getItem("Current Player");
-
     let gamesPlayed = JSON.parse(localStorage.getItem(currentPlayer+" - Games Played"));
-
     let currentScore = JSON.parse(localStorage.getItem(currentPlayer+ " - Current Score"));
-
     let totalScore = JSON.parse(localStorage.getItem(currentPlayer+" - Total Score"));
-
     let perfectGames = JSON.parse(localStorage.getItem(currentPlayer+" - Perfect Games"));
 
+    // used to add 1 to Perfect Games score in html
     let addOne = 0;
     if (currentScore == 3) {
         addOne += 1;
     }
 
+    // update Current Player's data in localStorage once game is over
     function update() {
         gamesPlayed += 1;
         localStorage.setItem(currentPlayer+" - Games Played", gamesPlayed);
@@ -42,6 +41,7 @@ export function GetResults() {
         window.location.href="http://localhost:3000/stats";
     }
 
+    // let player log out at any time, removing Current Player and Score from localStorage
     function logout() {
         update();
         localStorage.removeItem(currentPlayer+ " - Current Score");
@@ -54,6 +54,7 @@ export function GetResults() {
         localStorage.clear();
     }
 
+    // display page with Current Player and their overall stats
     return (
         <div className="App">
             <header className="App-header">
@@ -65,13 +66,15 @@ export function GetResults() {
                         </Card.Text>
                     </Card.Body>
                 </Card>
-                Games Played: {gamesPlayed+1}
+                Today's Score: {currentScore}
                 <br></br>
-                Total Score: {totalScore+currentScore}/{(gamesPlayed+1)*3}
+                Total Games Played: {gamesPlayed+1}
+                <br></br>
+                Overall Score: {totalScore+currentScore}/{(gamesPlayed+1)*3}
                 <br></br>
                 Average Score: {Math.round(((totalScore+currentScore)/(gamesPlayed+1) + Number.EPSILON) * 100) / 100}
                 <br></br>
-                Perfect Games: {perfectGames+addOne}/{gamesPlayed+1}
+                Number of Perfect Games: {perfectGames+addOne}/{gamesPlayed+1}
             </header>
             <br></br>
             <Row>
