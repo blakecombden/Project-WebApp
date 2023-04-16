@@ -49,11 +49,6 @@ export function GetResults() {
         window.location.href="http://localhost:3000"
     }
 
-    // testing
-    function deleteLocalStorage() {
-        localStorage.clear();
-    }
-
     // display page with Current Player and their overall stats
     return (
         <div className="App">
@@ -91,10 +86,6 @@ export function GetResults() {
                 <Col></Col>
                 <Col></Col>
             </Row>
-            <br></br>
-            <br></br>
-            <br></br>
-            <Button variant="primary" style={{width:200}} onClick={deleteLocalStorage}>Delete localStorage (testing)</Button>
             <Routes>
                 <Route path="/stats" element={<GetStats/>} />
             </Routes>

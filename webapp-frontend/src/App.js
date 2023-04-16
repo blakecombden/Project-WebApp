@@ -59,11 +59,6 @@ function HomePage() {
         window.location.href = "http://localhost:3000/stats";
     }
 
-    // testing
-    function deleteLocalStorage() {
-        localStorage.clear();
-    }
-
     // display page with username form input
     return (
         <div className="App">
@@ -101,10 +96,6 @@ function HomePage() {
                 <Col></Col>
                 <Col></Col>
             </Row>
-            <br></br>
-            <br></br>
-            <br></br>
-            <Button variant="primary" style={{width:200}} onClick={deleteLocalStorage}>Delete localStorage (testing)</Button>
         </div>
     )
 

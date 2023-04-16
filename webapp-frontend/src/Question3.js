@@ -75,11 +75,6 @@ export function GetQuestion3() {
         window.location.href="http://localhost:3000"
     }
 
-    // testing
-    function deleteLocalStorage() {
-        localStorage.clear();
-    }
-
     // display page with randomly selected question and true and false buttons
     return (
         <div className="App">
@@ -116,10 +111,6 @@ export function GetQuestion3() {
             <br></br>
             <Button variant="primary" style={{width:100}} onClick={logout}>LOGOUT
             </Button>
-            <br></br>
-            <br></br>
-            <br></br>
-            <Button variant="primary" style={{width:200}} onClick={deleteLocalStorage}>Delete localStorage (testing)</Button>
             <Routes>
                 <Route path="/question1/*" element={<GetQuestion3 questions={questions} setQuestions={setQuestions}/>} />
                 <Route path="/question2" element={<GetResults/>} />
