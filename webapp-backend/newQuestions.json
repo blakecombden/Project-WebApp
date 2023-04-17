@@ -1,0 +1,22 @@
+[
+        {
+                "question": "It is impossible for most people to lick their own elbow",
+                "answer": "True"
+        },
+        {
+                "question": "A crocodile can stick its tongue out",
+                "answer": "False"
+        },
+        {
+                "question": "A shrimp's heart is in its head",
+                "answer": "True"
+        },
+        {
+                "question": "It is physically impossible for pigs to look up into the sky",
+                "answer": "True"
+        },
+        {
+                "question": "There are 392 ways to make change for a dollar",
+                "answer": "False"
+        }
+]
