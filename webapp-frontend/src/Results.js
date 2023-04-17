@@ -1,4 +1,5 @@
 import {Route, Routes} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {GetStats} from "./Stats";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from "react-bootstrap/Card";
@@ -8,6 +9,8 @@ import Button from 'react-bootstrap/Button';
 import React from "react";
 
 export function GetResults() {
+
+    const navigate = useNavigate();
 
     // get Current Player and their data
     let currentPlayer = localStorage.getItem("Current Player");
@@ -38,7 +41,7 @@ export function GetResults() {
         }
         localStorage.setItem(currentPlayer+" - Perfect Games", perfectGames);
 
-        window.location.href="http://localhost:3000/stats";
+        navigate("/stats");
     }
 
     // let player log out at any time, removing Current Player and Score from localStorage
@@ -46,7 +49,7 @@ export function GetResults() {
         update();
         localStorage.removeItem(currentPlayer+ " - Current Score");
         localStorage.removeItem("Current Player");
-        window.location.href="http://localhost:3000"
+        navigate("/");
     }
 
     // display page with Current Player and their overall stats

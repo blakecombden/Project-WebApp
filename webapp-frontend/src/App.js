@@ -1,5 +1,6 @@
 import './App.css';
 import {Routes, Route} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import React, {useRef} from "react";
 import {GetStats} from './Stats';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,6 +17,7 @@ import {GetResults} from "./Results";
 function HomePage() {
 
     const username = useRef();
+    const navigate = useNavigate();
 
     // check if player has signed up
     function signIn() {
@@ -28,7 +30,7 @@ function HomePage() {
         for (let i = 0; i < localStorage.length; i++){
             if (name === localStorage.key(i)) {
                 localStorage.setItem("Current Player", name);
-                window.location.href = "http://localhost:3000/stats";
+                navigate("/stats");
                 return null
             }
         }
@@ -56,7 +58,7 @@ function HomePage() {
         localStorage.setItem(name+" - Average Score", JSON.stringify(0));
         localStorage.setItem(name+" - Perfect Games", JSON.stringify(0));
         localStorage.setItem("Current Player", name);
-        window.location.href = "http://localhost:3000/stats";
+        navigate("/stats");
     }
 
     // display page with username form input

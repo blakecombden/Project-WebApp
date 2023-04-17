@@ -1,4 +1,5 @@
 import {Route, Routes} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import React, {useState, useEffect} from "react";
 import {GetQuestion3} from "./Question3";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,8 +10,10 @@ import Button from 'react-bootstrap/Button';
 
 export function GetQuestion2() {
 
+    const navigate = useNavigate();
+
     // initialize arrays used to get question data from database and display random question
-    let [questions, setQuestions] = useState([]);
+    let [questions, setQuestions] = useState(null);
     let questionArray = [""];
     let randomQuestion = ["", ""];
     let randomInt;
@@ -29,6 +32,10 @@ export function GetQuestion2() {
             .catch(e => console.log(e.message))
     }, []);
 
+    if (questions == null) {
+        return<h1>Loading...</h1>
+    }
+
     // check if player's answer of false is correct
     // if so, increase score by 1 and save in localStorage
     const checkIfFalse = (question) => {
@@ -39,7 +46,7 @@ export function GetQuestion2() {
         } else {
             alert("Incorrect!");
         }
-        window.location.href="http://localhost:3000/question3"
+        navigate("/question3");
     }
 
     // check if player's answer of true is correct
@@ -52,7 +59,7 @@ export function GetQuestion2() {
         } else {
             alert("Incorrect!");
         }
-        window.location.href="http://localhost:3000/question3"
+        navigate("/question3");
     }
 
     // pick random question from all questions
@@ -72,7 +79,7 @@ export function GetQuestion2() {
     function logout() {
         localStorage.removeItem(currentPlayer+ " - Current Score");
         localStorage.removeItem("Current Player");
-        window.location.href="http://localhost:3000"
+        navigate("/");
     }
 
     // display page with randomly selected question and true and false buttons

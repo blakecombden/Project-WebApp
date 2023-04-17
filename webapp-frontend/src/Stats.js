@@ -1,4 +1,5 @@
 import {Route, Routes} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {GetQuestion1} from './Question1';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Card from "react-bootstrap/Card";
@@ -8,6 +9,8 @@ import Button from 'react-bootstrap/Button';
 import React from "react";
 
 export function GetStats() {
+
+    const navigate = useNavigate();
 
     // get Current Player and their data
     let currentPlayer = localStorage.getItem("Current Player");
@@ -29,11 +32,11 @@ export function GetStats() {
                 alert("You can only play once a day! Check back tomorrow!");
             } else {
                 localStorage.setItem(currentPlayer+" - Start Time", JSON.stringify(rightNow));
-                window.location.href="http://localhost:3000/question1"
+                navigate("/question1");
             }
         } else {
             localStorage.setItem(currentPlayer+" - Start Time", JSON.stringify(rightNow));
-            window.location.href="http://localhost:3000/question1"
+            navigate("/question1");
         }
     }
 
@@ -41,7 +44,7 @@ export function GetStats() {
     function logout() {
         localStorage.removeItem(currentPlayer+ " - Current Score");
         localStorage.removeItem("Current Player");
-        window.location.href="http://localhost:3000"
+        navigate("/");
     }
 
     // display page with Current Player and their overall stats
